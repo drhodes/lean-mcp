@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Install Elan (Lean 4 Toolchain Manager)
+      run: |
+        curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Verify Toolchain
+      run: |
+        lean --version
+        lake --version
+
+    - name: Build Library & Binaries
+      run: |
+        make build
+
+    - name: Run Unit & Integration Tests
+      run: |
+        make test

@@ -1,0 +1,16 @@
+name = "LeanMCP"
+version = "0.1.0"
+defaultTargets = ["LeanMCP", "lean-mcp-demo", "lean-mcp-test"]
+
+[[lean_lib]]
+name = "LeanMCP"
+
+[[lean_exe]]
+name = "lean-mcp-demo"
+root = "Main"
+
+[[lean_exe]]
+name = "lean-mcp-test"
+root = "Test"
+
+
