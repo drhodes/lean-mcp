@@ -32,7 +32,7 @@ To use LeanMCP as a dependency in your Lean 4 project, add it to your `lakefile.
 ```toml
 [[require]]
 name = "LeanMCP"
-path = "../LeanMCP"  # Or git URL once published
+path = "git@github.com:drhodes/lean-mcp.git"  # Or git URL once published
 ```
 
 ### 2. Building the Project
